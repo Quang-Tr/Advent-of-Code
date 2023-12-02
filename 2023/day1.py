@@ -18,20 +18,8 @@ keys = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 spelled = dict(zip(keys, "123456789"))
 with open(inputFile) as input:
     for line in input:
-        firstKeyOccurrence = (len(line), "")
         for key in keys:
-            if key in line and (minIndex := line.index(key)) < firstKeyOccurrence[0]:
-                firstKeyOccurrence = (minIndex, key)
-        if toBeReplaced := firstKeyOccurrence[1]:
-            line = line.replace(toBeReplaced, spelled[toBeReplaced] + toBeReplaced[-1], 1)
-        
-        lastKeyOccurrence = (-1, "")
-        for key in keys:
-            if key in line and (maxIndex := line.rindex(key)) > lastKeyOccurrence[0]:
-                lastKeyOccurrence = (maxIndex, key)
-        if toBeReplaced := lastKeyOccurrence[1]:
-            line = line.replace(toBeReplaced, spelled[toBeReplaced])
-        
+            line = re.sub(key, key[0] + spelled[key] + key[-1], line)
         digits = re.findall(r"\d", line)
         sum2 += int(digits[0] + digits[-1])
 print("Part 2:", sum2)
