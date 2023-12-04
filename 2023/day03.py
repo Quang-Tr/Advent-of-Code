@@ -20,8 +20,9 @@ for symbolPos in symbols:
     adjToStar = []
     for adjRow in range(max(0, symbolPos[0] - 1), min(symbolPos[0] + 2, len(numbers))):
         for span in numbers[adjRow]:
-            if set(range(*span)) & set(range(symbolPos[1] - 1, symbolPos[1] + 2)):
+            if max(span[0], symbolPos[1] - 1) < min(span[1], symbolPos[1] + 2):
                 adjPosNoDups.add((adjRow, span))
+
                 if symbols[symbolPos] == "*":
                     adjToStar.append(numbers[adjRow][span])
     if len(adjToStar) == 2:
