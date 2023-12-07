@@ -5,12 +5,12 @@ inputFile = Path(__file__).with_name(f"input{day}.txt")
 
 offsets = [{}]
 with open(inputFile) as input:
-    sources1 = [int(seed) for seed in input.readline().split()[1:]]
+    sources1 = [*map(int, input.readline().split()[1:])]
     sources2 = [(sources1[index], sources1[index] + sources1[index + 1]) \
                 for index in range(0, len(sources1), 2)]
     for line in input:
         if line[0].isdecimal():
-            dstStart, srcStart, length = map(lambda string: int(string), line.split())
+            dstStart, srcStart, length = map(int, line.split())
             offsets[-1][(srcStart, srcStart + length)] = dstStart - srcStart
         if line == "\n" or line[-1] != "\n":
             for index, source in enumerate(sources1):
