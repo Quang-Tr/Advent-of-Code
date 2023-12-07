@@ -5,8 +5,8 @@ day = Path(__file__).stem[3:]
 inputFile = Path(__file__).with_name(f"input{day}.txt")
 
 with open(inputFile) as input:
-    times, distances = [input.readline().split()[1:] for _ in range(2)]
-records = list(zip(*[li + ["".join(li)] for li in [times, distances]]))
+    times, distances = (input.readline().split()[1:] for _ in range(2))
+records = list(zip(*(li + ["".join(li)] for li in [times, distances])))
 records = [tuple(map(int, tup)) for tup in records]
 errorMargin = 1
 for time, distance in records:

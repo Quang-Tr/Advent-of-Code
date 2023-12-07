@@ -9,7 +9,7 @@ cardNum = 0
 instances = {}
 with open(inputFile) as input:
     for card in input:
-        win, have = [set(li.split()) for li in re.split(r":|\|", card)[1:]]
+        win, have = (set(li.split()) for li in re.split(r":|\|", card)[1:])
         if (match := len(win & have)) > 0:
             sum1 += 2**(match - 1)
         
