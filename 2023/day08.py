@@ -29,13 +29,13 @@ steps = []
 niceInput = True
 for start in starts:
     correspondingEnd, stepTo1stEnd = goToNextEnd(start, endsList=["ZZZ"]) if start == "AAA" \
-                             else goToNextEnd(start)
+                                     else goToNextEnd(start)
     steps.append(stepTo1stEnd)
     if correspondingEnd == "ZZZ":
         print("Part 1:", stepTo1stEnd)
     # Optional:
     nextEnd, stepToNextEnd = goToNextEnd(correspondingEnd, stepTo1stEnd)
     if nextEnd != correspondingEnd \
-        or stepToNextEnd != 2 * stepTo1stEnd or stepTo1stEnd % len(instructions) != 0:
+       or stepToNextEnd != 2 * stepTo1stEnd or stepTo1stEnd % len(instructions) != 0:
         niceInput = False
 print("Part 2:", math.lcm(*steps) if niceInput else "May the brute force be with you :)")
