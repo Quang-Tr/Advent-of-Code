@@ -15,7 +15,7 @@ dirs = (set("|LJ"), set("|7F"), set("-J7"), set("-LF"))
 with open(inputFile) as input:
     potentialS = set("|-LJ7F")
     for row in input:
-        extendedRow = "." + row.strip() + "."
+        extendedRow = "." + row.rstrip() + "."
         if not field:
             field.append("." * len(extendedRow))
         field.append(extendedRow)       
